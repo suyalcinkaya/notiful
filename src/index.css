@@ -1,0 +1,20 @@
+body {
+  margin: 5rem;
+  padding: 0;
+  font-family: sans-serif;
+  background: #f6f6f6;
+}
+
+.public-DraftEditor-content {
+  min-height: 100vh;
+  padding: 40px 20px 50vh;
+  height: inherit;
+  text-align: initial;
+}
+
+.DraftEditor-root {
+  position: relative;
+  text-align: initial;
+  max-width: calc(80ch + 40px);
+  margin: auto;
+}

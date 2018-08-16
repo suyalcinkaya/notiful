@@ -1,0 +1,14 @@
+{
+  "name": "Notio",
+  "description": "Open a new tab and note your best thoughts.",
+  "manifest_version": 2,
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "icons": {
+    "16": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
+  },
+  "version": "0.0.1"
+}
