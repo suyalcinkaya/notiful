@@ -46,4 +46,4 @@ class MyEditor extends React.Component {
   }
 }
 
-ReactDOM.render( <MyEditor />, document.getElementById('app'));
+ReactDOM.render(<MyEditor />, document.getElementById('app'));
