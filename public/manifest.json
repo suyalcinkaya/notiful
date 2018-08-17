@@ -1,5 +1,6 @@
 {
-  "name": "Notio",
+  "name": "Notiful",
+  "short_name": "Notiful",
   "description": "Open a new tab and note your best thoughts.",
   "manifest_version": 2,
   "chrome_url_overrides": {

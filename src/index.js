@@ -10,7 +10,7 @@ class MyEditor extends React.Component {
     super(props);
 
     let initialEditorState = null;
-    const storeRaw = localStorage.getItem('notio:editor-text');
+    const storeRaw = localStorage.getItem('notiful:editor-text');
 
     if (storeRaw) {
       const rawContentFromStore = convertFromRaw(JSON.parse(storeRaw));
@@ -29,7 +29,7 @@ class MyEditor extends React.Component {
       this.setState({ editorState });
 
       var contentRaw = convertToRaw(this.state.editorState.getCurrentContent());
-      localStorage.setItem('notio:editor-text', JSON.stringify(contentRaw));
+      localStorage.setItem('notiful:editor-text', JSON.stringify(contentRaw));
     }
 
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
