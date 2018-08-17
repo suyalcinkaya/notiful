@@ -12,7 +12,7 @@ class MyEditor extends React.Component {
     let initialEditorState = null;
     const storeRaw = localStorage.getItem('notiful:editor-text');
 
-    if (storeRaw) {
+    if(storeRaw) {
       const rawContentFromStore = convertFromRaw(JSON.parse(storeRaw));
       initialEditorState = EditorState.createWithContent(rawContentFromStore);
     } 
@@ -28,7 +28,7 @@ class MyEditor extends React.Component {
     this.onChange = (editorState) => {
       this.setState({ editorState });
 
-      var contentRaw = convertToRaw(this.state.editorState.getCurrentContent());
+      const contentRaw = convertToRaw(this.state.editorState.getCurrentContent());
       localStorage.setItem('notiful:editor-text', JSON.stringify(contentRaw));
     }
 
