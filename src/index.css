@@ -1,8 +1,26 @@
 body {
-  margin: 5rem;
+  margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Maison Neue Mono', sans-serif;
   background: #f6f6f6;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  height: 100%;
+}
+
+.editor-wrapper {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    min-height: 100%;
+    transition: transform .3s ease-in-out;
+    line-height: 1.3;
+    color: #4ada99;
+    -webkit-text-fill-color: #111;
 }
 
 .public-DraftEditor-content {
@@ -17,4 +35,9 @@ body {
   text-align: initial;
   max-width: calc(80ch + 40px);
   margin: auto;
+}
+
+a {
+  -webkit-text-fill-color: #4ada99;
+  color: #4ada99;
 }

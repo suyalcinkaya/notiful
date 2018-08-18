@@ -1,7 +1,12 @@
 {
+  "author": "Onur Suyalcinkaya",
   "name": "Notiful",
   "short_name": "Notiful",
   "description": "Open a new tab and note your best thoughts.",
+  "background": {
+    "persistent": false,
+    "scripts": [ "background.js" ]
+ },
   "manifest_version": 2,
   "chrome_url_overrides": {
     "newtab": "index.html"
@@ -11,5 +16,6 @@
     "48": "logo.png",
     "128": "logo.png"
   },
-  "version": "0.0.1"
+  "permissions": [ "storage" ],
+  "version": "1.0.0"
 }

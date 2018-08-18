@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Maison Neue Mono';
+    src: url('MaisonNeue-Mono.woff2') format('woff2'),
+        url('MaisonNeue-Mono.woff') format('woff'),
+        url('MaisonNeue-Mono.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('Roboto-Mono.woff2') format('woff2'),
+        url('Roboto-Mono.woff') format('woff'),
+        url('Roboto-Mono.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto.woff2') format('woff2'),
+        url('Roboto.woff') format('woff'),
+        url('Roboto.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
