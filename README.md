@@ -1,6 +1,6 @@
 # Notiful
 
-An open source minimal and clean tab extension about taking notes for Chrome
+An open source minimal and clean taking notes extension for Chrome
 
 [![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/nkpoomaonkgbpcgoncdkfbiamnbimene.svg?style=flat-square)](https://chrome.google.com/webstore/detail/notiful/nkpoomaonkgbpcgoncdkfbiamnbimene)
 [![Chrome Web Store Downloads](https://img.shields.io/chrome-web-store/d/nkpoomaonkgbpcgoncdkfbiamnbimene.svg?style=flat-square)](https://chrome.google.com/webstore/detail/notiful/nkpoomaonkgbpcgoncdkfbiamnbimene)
