@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'Maison Neue Mono';
+    font-family: 'Maison Mono';
     src: url('MaisonNeue-Mono.woff2') format('woff2'),
         url('MaisonNeue-Mono.woff') format('woff'),
         url('MaisonNeue-Mono.ttf') format('truetype');
@@ -21,6 +21,13 @@
     src: url('Roboto.woff2') format('woff2'),
         url('Roboto.woff') format('woff'),
         url('Roboto.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Apercu';
+    src: url('apercu_regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }

@@ -1,8 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Maison Neue Mono', sans-serif;
-  background: #f6f6f6;
+  height: 100%;
+  min-height: 100%;
 }
 
 #app {
@@ -14,13 +14,21 @@ body {
 
 .editor-wrapper {
     position: relative;
-    z-index: 0;
     width: 100%;
-    min-height: 100%;
-    transition: transform .3s ease-in-out;
-    line-height: 1.3;
-    color: #4ada99;
-    -webkit-text-fill-color: #111;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+* {
+  outline: 0;
+  -webkit-tap-highlight-color: #4ada99;
+}
+
+*, :after, :before {
+  box-sizing: border-box;
 }
 
 .public-DraftEditor-content {
@@ -38,6 +46,308 @@ body {
 }
 
 a {
-  -webkit-text-fill-color: #4ada99;
-  color: #4ada99;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a span {
+  -webkit-text-fill-color: #4ada99 !important;
+  color: #4ada99 !important;
+}
+
+.sidebar-icon-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  z-index: 1;
+}
+
+.customize-button {
+  opacity: .2;
+}
+
+.customize-button:hover {
+  opacity: .4;
+}
+
+.sidebar-icon:before {
+  content: url('./assets/icons/more.svg');
+}
+
+.close-icon:before {
+  content: url('./assets/icons/close.svg');
+}
+
+.dark-theme.editor-wrapper ::selection {
+  background: rgba(51,204,51,.4);
+}
+
+.light-theme.editor-wrapper ::selection {
+  background: rgba(51,204,51,.15);
+}
+
+.sidebar-close {
+  position: fixed;
+  z-index: 3;
+  top: 33px;
+  right: 30px;
+  cursor: pointer;
+  fill: #111;
+  opacity: .3;
+}
+
+.sidebar-content {
+    position: relative;
+    text-align: initial;
+    max-width: calc(80ch + 100px);
+    height: 100%;
+    margin: auto;
+    padding: 0;
+}
+
+.sidebar-title {
+  font-size: 1.5em;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.pl-25 {
+  padding-left: 25rem;
+  transition: 0.3s ease-out;
+  will-change: transform;
+  transform: translateX(0%);
+}
+
+.font-family__apercu {
+  font-family: 'Apercu';
+}
+
+.ff-maison-mono .DraftEditor-root span {
+  font-family: 'Maison Mono';
+}
+
+.ff-roboto-mono .DraftEditor-root span {
+  font-family: 'Roboto Mono';
+}
+
+.ff-roboto .DraftEditor-root span  {
+  font-family: 'Roboto';
+}
+
+.ff-interui .DraftEditor-root span  {
+  font-family: 'Inter UI';
+}
+
+.font-size__small {
+  font-size: 13px;
+}
+
+.font-size__regular {
+  font-size: 16px;
+}
+
+.font-size__large {
+  font-size: 20px
+}
+
+.sidebar-form__title {
+    display: block;
+    margin-bottom: .5rem;
+}
+
+.sidebar-form__boxed-radios:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.sidebar-form__boxed-radios {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.sidebar-form__boxed-radios__box {
+  position: relative;
+  text-align: center;
+  padding-right: .75rem;
+}
+
+.sidebar-form__boxed-radios__box label img {
+    display: block;
+    margin: 0 auto .5rem;
+    justify-content: center;
+    height: 1.25em;
+    width: 1.25em;
+}
+
+.sidebar-form__boxed-radios__font-size .sidebar-form__boxed-radios__box {
+  width: 33.3%;
+}
+
+.sidebar-form__boxed-radios__font-family .sidebar-form__boxed-radios__box {
+  width: 50%;
+  margin-bottom: .75rem;
+}
+
+.sidebar-form__boxed-radios__theme .sidebar-form__boxed-radios__box {
+  width: 33.3%;
+}
+
+.sidebar-form__boxed-radios__alignment .sidebar-form__boxed-radios__box {
+  width: 25%;
+}
+
+.sidebar-form__boxed-radios__font-family .sidebar-form__boxed-radios__box:nth-child(2) {
+  padding-right: 0;
+}
+
+.sidebar-form__boxed-radios__box:last-child {
+  padding-right: 0;
+}
+
+.sidebar-form__boxed-radios__box input[type=radio]:checked+label {
+  border: 1px solid #1c1c1c;
+}
+
+.sidebar-form__boxed-radios__box label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: block;
+  background-color: #fff;
+  border: 1px solid #fff;
+  padding: .75rem;
+  cursor: pointer;
+  margin-bottom: .25rem;
+  font-size: .85em;
+}
+
+.sidebar-form__boxed-radios__box input[type=radio] {
+  position: absolute;
+  left: -9999px;
+}
+
+.sidebar-section:not(:last-child) {
+  border-bottom: 1px solid hsla(0,0%,7%,.1);
+}
+
+.font-size_small .DraftEditor-root span {
+  font-size: 13px;
+}
+
+.light-theme .DraftEditor-root span {
+  color: #111;
+  -webkit-text-fill-color: #111;
+}
+
+.light-theme {
+  background: #fff
+}
+
+.dark-theme .DraftEditor-root span {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.dark-theme a.customize-button svg {
+  stroke: #fff
+}
+
+.dark-theme {
+  background: #1d1f21;
+}
+
+.slack-theme .DraftEditor-root span {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.slack-theme a.customize-button svg {
+  stroke: #fff
+}
+
+.slack-theme {
+  background: #4e2f4c
+}
+
+.align_left .DraftEditor-root div {
+  text-align: left;
+}
+
+.align_center .DraftEditor-root div {
+  text-align: center;
+}
+
+.align_justify .DraftEditor-root div {
+  text-align: justify;
+}
+
+.align_right .DraftEditor-root div {
+  text-align: right;
+}
+
+.font-size_small .DraftEditor-root h1 span {
+  font-size: 24px;
+}
+
+.font-size_small .DraftEditor-root h2 span {
+  font-size: 21px;
+}
+
+.font-size_small .DraftEditor-root h3 span {
+  font-size: 18px;
+}
+
+.font-size_small .DraftEditor-root h4 span {
+  font-size: 15px;
+}
+
+.font-size_regular .DraftEditor-root span {
+  font-size: 16px;
+}
+
+.font-size_regular .DraftEditor-root h1 span {
+  font-size: 28px;
+}
+
+.font-size_regular .DraftEditor-root h2 span {
+  font-size: 25px;
+}
+
+.font-size_regular .DraftEditor-root h3 span {
+  font-size: 22px;
+}
+
+.font-size_regular .DraftEditor-root h4 span {
+  font-size: 19px;
+}
+
+.font-size_large .DraftEditor-root span {
+  font-size: 20px;
+}
+
+.font-size_large .DraftEditor-root h1 span {
+  font-size: 32px;
+}
+
+.font-size_large .DraftEditor-root h2 span {
+  font-size: 29px;
+}
+
+.font-size_large .DraftEditor-root h3 span {
+  font-size: 26px;
+}
+
+.font-size_large .DraftEditor-root h4 span {
+  font-size: 23px;
+}
+
+.editor__sidebar {
+  padding: 2rem;
+  height: 100%;
 }

@@ -1,4 +1,4 @@
-import  { RichUtils } from 'draft-js';
+import { RichUtils } from 'draft-js';
 
 export default () => {
   return {
