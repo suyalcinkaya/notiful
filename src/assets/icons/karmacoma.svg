@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>Color-Patch</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="6" cy="6" r="6"></circle>
+        <circle id="path-3" cx="6" cy="6" r="6"></circle>
+        <path d="M6,12 C9.3137085,12 12,9.3137085 12,6 C12,2.6862915 9.3137085,0 6,0 C2.6862915,0 0,2.6862915 0,6 C0,9.3137085 2.6862915,12 6,12 Z" id="path-5"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-50.000000, -57.000000)">
+            <g id="Color-Patch" transform="translate(50.000000, 57.000000)">
+                <g id="mask-3" fill="#FFFFFF">
+                    <circle id="path-1" cx="6" cy="6" r="6"></circle>
+                </g>
+                <g id="Mask-Clipped">
+                    <g>
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="path-1"></g>
+                        <g id="Mask" mask="url(#mask-2)">
+                            <g id="Clipped">
+                                <g id="path-1-Clipped">
+                                    <mask id="mask-4" fill="white">
+                                        <use xlink:href="#path-3"></use>
+                                    </mask>
+                                    <g id="path-3"></g>
+                                    <circle id="path-1" stroke="#563589" stroke-width="2" fill="#89C5C3" mask="url(#mask-4)" cx="6" cy="6" r="6"></circle>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Path-2-Clipped">
+                    <g>
+                        <mask id="mask-6" fill="white">
+                            <use xlink:href="#path-5"></use>
+                        </mask>
+                        <g id="path-5"></g>
+                        <polyline id="Path-2" fill="#563589" mask="url(#mask-6)" points="0 12 11 1 13.9646206 13.1895695"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

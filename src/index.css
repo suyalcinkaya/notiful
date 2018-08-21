@@ -3,6 +3,7 @@ body {
   padding: 0;
   height: 100%;
   min-height: 100%;
+  font-family: 'Apercu', sans-serif;
 }
 
 #app {
@@ -13,13 +14,15 @@ body {
 }
 
 .editor-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 * {
@@ -48,6 +51,8 @@ body {
 a {
   text-decoration: none;
   cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 a span {
@@ -64,15 +69,11 @@ a span {
 }
 
 .customize-button {
-  opacity: .2;
+  opacity: .3;
 }
 
 .customize-button:hover {
-  opacity: .4;
-}
-
-.sidebar-icon:before {
-  content: url('./assets/icons/more.svg');
+  opacity: 1;
 }
 
 .close-icon:before {
@@ -90,11 +91,13 @@ a span {
 .sidebar-close {
   position: fixed;
   z-index: 3;
-  top: 33px;
-  right: 30px;
-  cursor: pointer;
-  fill: #111;
-  opacity: .3;
+  top: 2.5rem;
+  right: 2rem;
+  opacity: .5;
+}
+
+.sidebar-close:hover {
+  opacity: 1;
 }
 
 .sidebar-content {
@@ -115,28 +118,25 @@ a span {
 
 .pl-25 {
   padding-left: 25rem;
-  transition: 0.3s ease-out;
-  will-change: transform;
-  transform: translateX(0%);
 }
 
 .font-family__apercu {
   font-family: 'Apercu';
 }
 
-.ff-maison-mono .DraftEditor-root span {
+.ff-maison-mono .DraftEditor-root span, .font-family__maison-mono {
   font-family: 'Maison Mono';
 }
 
-.ff-roboto-mono .DraftEditor-root span {
+.ff-roboto-mono .DraftEditor-root span, .font-family__roboto-mono {
   font-family: 'Roboto Mono';
 }
 
-.ff-roboto .DraftEditor-root span  {
+.ff-roboto .DraftEditor-root span, .font-family__roboto  {
   font-family: 'Roboto';
 }
 
-.ff-interui .DraftEditor-root span  {
+.ff-interui .DraftEditor-root span, .font-family__interui  {
   font-family: 'Inter UI';
 }
 
@@ -189,18 +189,22 @@ a span {
 
 .sidebar-form__boxed-radios__font-family .sidebar-form__boxed-radios__box {
   width: 50%;
-  margin-bottom: .75rem;
+  margin-bottom: .5rem;
 }
 
 .sidebar-form__boxed-radios__theme .sidebar-form__boxed-radios__box {
-  width: 33.3%;
+  width: 50%;
+  margin-bottom: .5rem;
 }
 
 .sidebar-form__boxed-radios__alignment .sidebar-form__boxed-radios__box {
-  width: 25%;
+  width: 50%;
+  margin-bottom: .5rem;
 }
 
-.sidebar-form__boxed-radios__font-family .sidebar-form__boxed-radios__box:nth-child(2) {
+.sidebar-form__boxed-radios__font-family .sidebar-form__boxed-radios__box:nth-child(2),
+.sidebar-form__boxed-radios__theme .sidebar-form__boxed-radios__box:nth-child(2),
+.sidebar-form__boxed-radios__alignment .sidebar-form__boxed-radios__box:nth-child(2) {
   padding-right: 0;
 }
 
@@ -225,6 +229,8 @@ a span {
   cursor: pointer;
   margin-bottom: .25rem;
   font-size: .85em;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .sidebar-form__boxed-radios__box input[type=radio] {
@@ -240,40 +246,55 @@ a span {
   font-size: 13px;
 }
 
-.light-theme .DraftEditor-root span {
-  color: #111;
-  -webkit-text-fill-color: #111;
-}
+/* Theme */
 
 .light-theme {
   background: #fff
 }
 
-.dark-theme .DraftEditor-root span {
-  color: #fff;
-  -webkit-text-fill-color: #fff;
-}
-
-.dark-theme a.customize-button svg {
-  stroke: #fff
+.light-theme span {
+  color: #111;
+  -webkit-text-fill-color: #111;
 }
 
 .dark-theme {
   background: #1d1f21;
 }
 
-.slack-theme .DraftEditor-root span {
+.dark-theme span {
   color: #fff;
   -webkit-text-fill-color: #fff;
-}
-
-.slack-theme a.customize-button svg {
-  stroke: #fff
 }
 
 .slack-theme {
   background: #4e2f4c
 }
+
+.slack-theme span {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.karmacoma-theme {
+  background: #513984;
+}
+
+.karmacoma-theme span {
+  color: #95C4C2;
+  -webkit-text-fill-color: #95C4C2;
+}
+
+.dark-theme a.customize-button svg, .slack-theme a.customize-button svg, .karmacoma-theme a.customize-button svg {
+  stroke: #fff
+}
+
+/* To fix double overlay emoji bug */
+.draftJsEmojiPlugin__emoji__2oqBk span {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Alignment */
 
 .align_left .DraftEditor-root div {
   text-align: left;
@@ -350,4 +371,21 @@ a span {
 .editor__sidebar {
   padding: 2rem;
   height: 100%;
+}
+
+.editor-stats {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  opacity: .2;
+  font-size: 12px;
+  padding: 20px
+}
+
+.word-count {
+  margin-bottom: .25rem;
+}
+
+.character-count, .word-count {
+  display: block;
 }

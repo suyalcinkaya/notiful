@@ -5,14 +5,16 @@ import Editor from 'draft-js-plugins-editor';
 import { EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
-import 'draft-js-emoji-plugin/lib/plugin.css';
+import createCounterPlugin from 'draft-js-counter-plugin';
 import createStrikePlugin from './strikePlugin';
+import 'draft-js-emoji-plugin/lib/plugin.css';
 import './assets/fonts/fonts.css';
 import './index.css';
 
 import lightIcon from './assets/icons/light.svg';
 import darkIcon from './assets/icons/dark.svg';
 import slackIcon from './assets/icons/slack.svg';
+import karmacomaIcon from './assets/icons/karmacoma.svg';
 
 import alignLeftIcon from './assets/icons/align-left.svg';
 import alignCenterIcon from './assets/icons/align-center.svg';
@@ -22,7 +24,22 @@ import alignRightIcon from './assets/icons/align-right.svg';
 const strikePlugin = createStrikePlugin();
 const emojiPlugin = createEmojiPlugin();
 const { EmojiSuggestions } = emojiPlugin;
-const linkifyPlugin = createLinkifyPlugin();
+const linkifyPlugin = createLinkifyPlugin({
+  component: (props) => {
+    const { contentState, ...rest } = props;
+    const title = "Alt+Click to open " + rest.href.substr(7) + " in a new tab";
+    return (
+    <a {...rest} title={title} className="" rel="" target="" onClick={(event) => {
+      if(event.altKey) {
+        window.open(rest.href, "_blank");
+      }
+    }}
+    />
+  );
+  }
+});
+const counterPlugin = createCounterPlugin();
+const { CharCounter, WordCounter } = counterPlugin;
 
 class MyEditor extends React.Component {
   constructor(props) {
@@ -47,22 +64,26 @@ class MyEditor extends React.Component {
 
     const fontFamilyMaisonMono = {
       key: "maison-mono",
-      name: "Maison Mono"
+      name: "Maison Mono",
+      class: "font-family__maison-mono"
     }
 
     const fontFamilyRobotoMono = {
       key: "roboto-mono",
-      name: "Roboto Mono"
+      name: "Roboto Mono",
+      class: "font-family__roboto-mono"
     }
 
     const fontFamilyRoboto = {
       key: "roboto",
-      name: "Roboto"
+      name: "Roboto",
+      class: "font-family__roboto"
     }
 
     const fontFamilyInterUI = {
       key: "interUI",
-      name: "Inter UI"
+      name: "Inter UI",
+      class: "font-family__interui"
     }
 
     const fontFamilyList = [fontFamilyMaisonMono, fontFamilyRobotoMono, fontFamilyRoboto, fontFamilyInterUI];
@@ -102,13 +123,19 @@ class MyEditor extends React.Component {
       icon: darkIcon
     }
 
+    const karmacomaTheme = {
+      key: "karmacoma",
+      name: "Karmacoma",
+      icon: karmacomaIcon
+    }
+
     const slackTheme = {
       key: "slack",
       name: "Slack",
       icon: slackIcon
     }
 
-    const themeList = [lightTheme, darkTheme, slackTheme];
+    const themeList = [lightTheme, darkTheme, slackTheme, karmacomaTheme];
 
     const alignLeft = {
       key: "left",
@@ -134,7 +161,7 @@ class MyEditor extends React.Component {
       icon: alignRightIcon
     }
 
-    const alignmentList = [alignLeft, alignCenter, alignJustify, alignRight]
+    const alignmentList = [alignLeft, alignRight, alignCenter, alignJustify]
 
     this.state = {
       sidebarOpen: false,
@@ -147,7 +174,7 @@ class MyEditor extends React.Component {
       theme: undefined === themeList.find((item) => item.name === storeTheme) ? lightTheme.name : storeTheme,
       alignment: undefined === alignmentList.find((item) => item.name === storeAlignment) ? alignLeft.name : storeAlignment,
       editorState: initialEditorState,
-      plugins: [strikePlugin, emojiPlugin, linkifyPlugin]
+      plugins: [strikePlugin, emojiPlugin, linkifyPlugin, counterPlugin]
     };
 
     localStorage.setItem('notiful:font-family', this.state.fontFamily);
@@ -210,17 +237,26 @@ class MyEditor extends React.Component {
     if("Light" === this.state.theme) {
       document.querySelector('.editor-wrapper').classList.remove('theme_dark');
       document.querySelector('.editor-wrapper').classList.remove('slack-theme');
+      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
       document.querySelector('.editor-wrapper').classList.add('light-theme');
     }
     else if("Dark" === this.state.theme) {
       document.querySelector('.editor-wrapper').classList.remove('light-theme');
       document.querySelector('.editor-wrapper').classList.remove('slack-theme');
+      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
       document.querySelector('.editor-wrapper').classList.add('dark-theme');
     }
     else if("Slack" === this.state.theme) {
       document.querySelector('.editor-wrapper').classList.remove('light-theme');
       document.querySelector('.editor-wrapper').classList.remove('dark-theme');
+      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
       document.querySelector('.editor-wrapper').classList.add('slack-theme');
+    }
+    else if("Karmacoma" === this.state.theme) {
+      document.querySelector('.editor-wrapper').classList.remove('light-theme');
+      document.querySelector('.editor-wrapper').classList.remove('dark-theme');
+      document.querySelector('.editor-wrapper').classList.remove('slack-theme');
+      document.querySelector('.editor-wrapper').classList.add('karmacoma-theme');
     }
     localStorage.setItem('notiful:theme', this.state.theme);
 
@@ -335,17 +371,26 @@ class MyEditor extends React.Component {
     if("Light" === _theme.name) {
       document.querySelector('.editor-wrapper').classList.remove('dark-theme');
       document.querySelector('.editor-wrapper').classList.remove('slack-theme');
+      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
       document.querySelector('.editor-wrapper').classList.add('light-theme');
     }
     else if("Dark" === _theme.name) {
       document.querySelector('.editor-wrapper').classList.remove('light-theme');
       document.querySelector('.editor-wrapper').classList.remove('slack-theme');
+      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
       document.querySelector('.editor-wrapper').classList.add('dark-theme');
     }
     else if("Slack" === _theme.name) {
       document.querySelector('.editor-wrapper').classList.remove('light-theme');
       document.querySelector('.editor-wrapper').classList.remove('dark-theme');
+      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
       document.querySelector('.editor-wrapper').classList.add('slack-theme');
+    }
+    else if("Karmacoma" === _theme.name) {
+      document.querySelector('.editor-wrapper').classList.remove('light-theme');
+      document.querySelector('.editor-wrapper').classList.remove('dark-theme');
+      document.querySelector('.editor-wrapper').classList.remove('slack-theme');
+      document.querySelector('.editor-wrapper').classList.add('karmacoma-theme');
     }
 
     localStorage.setItem('notiful:theme', _theme.name);
@@ -402,7 +447,7 @@ class MyEditor extends React.Component {
                         <div className="sidebar-form__boxed-radios__box" key={fontFamily.key}>
                           <input type="radio" id={fontFamily.key} value={fontFamily.name} checked={this.state.fontFamily === fontFamily.name} onChange={this.handleFontFamilyChange} />
                           <label htmlFor={fontFamily.key}>
-                            <span>{fontFamily.name}</span>
+                            <span className={fontFamily.class}>{fontFamily.name}</span>
                           </label>
                         </div>
                       );
@@ -466,9 +511,9 @@ class MyEditor extends React.Component {
               backgroundColor: "#f5f5f5",
               overflow: "auto",
               fontFamily: "Roboto,sans-serif",
-              transition: "transform .3s ease-in-out",
+              transition: "transform 0.3s",
               transform: "translate3d(-350px,0,0)",
-              boxShadow: "0 0 0 1px rgba(0,0,0,.1), 0 2px 8px 0 rgba(0,0,0,.1)"
+              boxShadow: "0 5px 10px 0 rgba(69, 129, 208, 0.12)"
             },
             overlay: {
               zIndex: 1,
@@ -488,7 +533,7 @@ class MyEditor extends React.Component {
         <div className="editor-wrapper">
           <div className="sidebar-icon-wrapper">
             <a className="customize-button" onClick={() => this.handleSidebarOpen(true)}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
             </a>
           </div>
           <Editor
@@ -517,6 +562,16 @@ class MyEditor extends React.Component {
               ]
             }
           />
+          <div className="editor-stats">
+            <span className="word-count">
+              <WordCounter editorState={this.state.editorState} />
+              <span> words</span>
+            </span>
+            <span className="character-count">
+              <CharCounter editorState={this.state.editorState} />
+              <span> characters</span>
+            </span>
+          </div>
           <EmojiSuggestions />
         </div>
       </div>
