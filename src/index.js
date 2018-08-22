@@ -29,7 +29,7 @@ const linkifyPlugin = createLinkifyPlugin({
     const { contentState, ...rest } = props;
     const title = "Alt+Click to open " + rest.href.substr(7) + " in a new tab";
     return (
-    <a {...rest} title={title} className="" rel="" target="" onClick={(event) => {
+    <a {...rest} title={title} onClick={(event) => {
       if(event.altKey) {
         window.open(rest.href, "_blank");
       }
@@ -51,9 +51,9 @@ class MyEditor extends React.Component {
     const storeFontSize = localStorage.getItem('notiful:font-size');
     const storeTheme = localStorage.getItem('notiful:theme');
     const storeAlignment = localStorage.getItem('notiful:alignment');
-    const initialRaw = '{"blocks":[{"key":"177nl","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"74dtg","text":"Oh, great you are here :-)","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"a0e1u","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"e3r","text":"Thank you for downloading Notiful.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2b30s","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"56osb","text":"Notiful is a minimal and clean tab extension for taking notes. Got something on your mind? Write down your thoughts and they will still be here when you return.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fnmba","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"io87","text":"Backed up directly to Chrome. So no accounts or sync thing.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"d19sg","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6a7v1","text":"Here are some shortcuts. Take note ;-)","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8oiba","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2mp42","text":"⌘B to bold","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":2,"length":1,"style":"BOLD"},{"offset":5,"length":5,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"97hda","text":"⌘I to italic","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":2,"length":1,"style":"ITALIC"},{"offset":5,"length":7,"style":"ITALIC"}],"entityRanges":[],"data":{}},{"key":"9r66n","text":"⌘U to underline","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":6,"length":9,"style":"UNDERLINE"}],"entityRanges":[],"data":{}},{"key":"amlqa","text":"⇧⌘S to strike through","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":14,"style":"STRIKE"}],"entityRanges":[],"data":{}},{"key":"8g6d","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"bh3sa","text":"Type : to see emojis 🖖🏽 ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":21,"length":2,"key":0}],"data":{}},{"key":"2hro","text":"#To add a h1 header","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"11ucv","text":"##To add a h2 header","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"eqcad","text":"###To add a h3 header","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"gsm4","text":"####To add a h4 header","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"837bu","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ffmp6","text":"About:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"72ikf","text":"Made by suyalcinkaya.github.io","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"c7qpb","text":"Follow on Github to get the latest updates: github.com/suyalcinkaya/notiful","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{"0":{"type":"emoji","mutability":"IMMUTABLE","data":{"emojiUnicode":"🖖🏽"}}}}';
+    const initialRaw = '{"blocks":[{"key":"177nl","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"74dtg","text":"Oh, great you are here :-)","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"a0e1u","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"e3r","text":"Thank you for downloading Notiful.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2b30s","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"56osb","text":"Notiful is a minimal and clean tab extension for taking notes. Got something on your mind? Write down your thoughts and they will still be here when you return.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fnmba","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"io87","text":"Backed up directly to Chrome. So no accounts or sync thing.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"d19sg","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6a7v1","text":"Here are some shortcuts ;-)","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8oiba","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2mp42","text":"⌘B to bold","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":2,"length":1,"style":"BOLD"},{"offset":5,"length":5,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"97hda","text":"⌘I to italic","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":2,"length":1,"style":"ITALIC"},{"offset":5,"length":7,"style":"ITALIC"}],"entityRanges":[],"data":{}},{"key":"9r66n","text":"⌘U to underline","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":6,"length":9,"style":"UNDERLINE"}],"entityRanges":[],"data":{}},{"key":"amlqa","text":"⇧⌘S to strike through","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":7,"length":14,"style":"STRIKE"}],"entityRanges":[],"data":{}},{"key":"8g6d","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"bh3sa","text":"Type : to see emojis 🙌","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":21,"length":1,"key":0}],"data":{}},{"key":"7cgr6","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"e1nrc","text":"Alt+Click to open urls in a new tab suyalcinkaya.github.io","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2hro","text":"#To add a h1 header","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"11ucv","text":"##To add a h2 header","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"eqcad","text":"###To add a h3 header","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"gsm4","text":"####To add a h4 header","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ffmp6","text":"About:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"72ikf","text":"Made by suyalcinkaya.github.io","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"c7qpb","text":"Follow on Github to get the latest updates: github.com/suyalcinkaya/notiful","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{"0":{"type":"emoji","mutability":"IMMUTABLE","data":{"emojiUnicode":"🙌"}}}}';
 
-    if(undefined !== storeRaw) {
+    if(undefined !== storeRaw && null !== storeRaw) {
       const rawContentFromStore = convertFromRaw(JSON.parse(storeRaw));
       initialEditorState = EditorState.createWithContent(rawContentFromStore);
     } 
@@ -192,97 +192,97 @@ class MyEditor extends React.Component {
 
   componentDidMount(){
     if("Small" === this.state.fontSize) {
-      document.querySelector('.editor-wrapper').classList.remove('font-size_regular');
-      document.querySelector('.editor-wrapper').classList.remove('font-size_large');
-      document.querySelector('.editor-wrapper').classList.add('font-size_small');
+      document.querySelector('.editor').classList.remove('font-size_regular');
+      document.querySelector('.editor').classList.remove('font-size_large');
+      document.querySelector('.editor').classList.add('font-size_small');
     }
     else if("Regular" === this.state.fontSize) {
-      document.querySelector('.editor-wrapper').classList.remove('font-size_small');
-      document.querySelector('.editor-wrapper').classList.remove('font-size_large');
-      document.querySelector('.editor-wrapper').classList.add('font-size_regular');
+      document.querySelector('.editor').classList.remove('font-size_small');
+      document.querySelector('.editor').classList.remove('font-size_large');
+      document.querySelector('.editor').classList.add('font-size_regular');
     }
     else if("Large" === this.state.fontSize) {
-      document.querySelector('.editor-wrapper').classList.remove('font-size_small');
-      document.querySelector('.editor-wrapper').classList.remove('font-size_regular');
-      document.querySelector('.editor-wrapper').classList.add('font-size_large');
+      document.querySelector('.editor').classList.remove('font-size_small');
+      document.querySelector('.editor').classList.remove('font-size_regular');
+      document.querySelector('.editor').classList.add('font-size_large');
     }
     localStorage.setItem('notiful:font-size', this.state.fontSize);
 
     if("Maison Mono" === this.state.fontFamily) {
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto');
-      document.querySelector('.editor-wrapper').classList.remove('ff-interui');
-      document.querySelector('.editor-wrapper').classList.add('ff-maison-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto');
+      document.querySelector('.editor').classList.remove('ff-interui');
+      document.querySelector('.editor').classList.add('ff-maison-mono');
     }
     else if("Roboto Mono" === this.state.fontFamily) {
-      document.querySelector('.editor-wrapper').classList.remove('ff-maison-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto');
-      document.querySelector('.editor-wrapper').classList.remove('ff-interui');
-      document.querySelector('.editor-wrapper').classList.add('ff-roboto-mono');
+      document.querySelector('.editor').classList.remove('ff-maison-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto');
+      document.querySelector('.editor').classList.remove('ff-interui');
+      document.querySelector('.editor').classList.add('ff-roboto-mono');
     }
     else if("Roboto" === this.state.fontFamily) {
-      document.querySelector('.editor-wrapper').classList.remove('ff-maison-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-interui');
-      document.querySelector('.editor-wrapper').classList.add('ff-roboto');
+      document.querySelector('.editor').classList.remove('ff-maison-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto-mono');
+      document.querySelector('.editor').classList.remove('ff-interui');
+      document.querySelector('.editor').classList.add('ff-roboto');
     }
     else if("Inter UI" === this.state.fontFamily) {
-      document.querySelector('.editor-wrapper').classList.remove('ff-maison-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto');
-      document.querySelector('.editor-wrapper').classList.add('ff-interui');
+      document.querySelector('.editor').classList.remove('ff-maison-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto');
+      document.querySelector('.editor').classList.add('ff-interui');
     }
     localStorage.setItem('notiful:font-family', this.state.fontFamily);
 
     if("Light" === this.state.theme) {
-      document.querySelector('.editor-wrapper').classList.remove('theme_dark');
-      document.querySelector('.editor-wrapper').classList.remove('slack-theme');
-      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
-      document.querySelector('.editor-wrapper').classList.add('light-theme');
+      document.querySelector('.editor').classList.remove('theme_dark');
+      document.querySelector('.editor').classList.remove('slack-theme');
+      document.querySelector('.editor').classList.remove('karmacoma-theme');
+      document.querySelector('.editor').classList.add('light-theme');
     }
     else if("Dark" === this.state.theme) {
-      document.querySelector('.editor-wrapper').classList.remove('light-theme');
-      document.querySelector('.editor-wrapper').classList.remove('slack-theme');
-      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
-      document.querySelector('.editor-wrapper').classList.add('dark-theme');
+      document.querySelector('.editor').classList.remove('light-theme');
+      document.querySelector('.editor').classList.remove('slack-theme');
+      document.querySelector('.editor').classList.remove('karmacoma-theme');
+      document.querySelector('.editor').classList.add('dark-theme');
     }
     else if("Slack" === this.state.theme) {
-      document.querySelector('.editor-wrapper').classList.remove('light-theme');
-      document.querySelector('.editor-wrapper').classList.remove('dark-theme');
-      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
-      document.querySelector('.editor-wrapper').classList.add('slack-theme');
+      document.querySelector('.editor').classList.remove('light-theme');
+      document.querySelector('.editor').classList.remove('dark-theme');
+      document.querySelector('.editor').classList.remove('karmacoma-theme');
+      document.querySelector('.editor').classList.add('slack-theme');
     }
     else if("Karmacoma" === this.state.theme) {
-      document.querySelector('.editor-wrapper').classList.remove('light-theme');
-      document.querySelector('.editor-wrapper').classList.remove('dark-theme');
-      document.querySelector('.editor-wrapper').classList.remove('slack-theme');
-      document.querySelector('.editor-wrapper').classList.add('karmacoma-theme');
+      document.querySelector('.editor').classList.remove('light-theme');
+      document.querySelector('.editor').classList.remove('dark-theme');
+      document.querySelector('.editor').classList.remove('slack-theme');
+      document.querySelector('.editor').classList.add('karmacoma-theme');
     }
     localStorage.setItem('notiful:theme', this.state.theme);
 
     if("Left" === this.state.alignment) {
-      document.querySelector('.editor-wrapper').classList.remove('align_center');
-      document.querySelector('.editor-wrapper').classList.remove('align_justify');
-      document.querySelector('.editor-wrapper').classList.remove('align_right');
-      document.querySelector('.editor-wrapper').classList.add('align_left');
+      document.querySelector('.editor').classList.remove('align_center');
+      document.querySelector('.editor').classList.remove('align_justify');
+      document.querySelector('.editor').classList.remove('align_right');
+      document.querySelector('.editor').classList.add('align_left');
     }
     else if("Center" === this.state.alignment) {
-      document.querySelector('.editor-wrapper').classList.remove('align_left');
-      document.querySelector('.editor-wrapper').classList.remove('align_justify');
-      document.querySelector('.editor-wrapper').classList.remove('align_right');
-      document.querySelector('.editor-wrapper').classList.add('align_center');
+      document.querySelector('.editor').classList.remove('align_left');
+      document.querySelector('.editor').classList.remove('align_justify');
+      document.querySelector('.editor').classList.remove('align_right');
+      document.querySelector('.editor').classList.add('align_center');
     }
     else if("Justify" === this.state.alignment) {
-      document.querySelector('.editor-wrapper').classList.remove('align_left');
-      document.querySelector('.editor-wrapper').classList.remove('align_center');
-      document.querySelector('.editor-wrapper').classList.remove('align_right');
-      document.querySelector('.editor-wrapper').classList.add('align_justify');
+      document.querySelector('.editor').classList.remove('align_left');
+      document.querySelector('.editor').classList.remove('align_center');
+      document.querySelector('.editor').classList.remove('align_right');
+      document.querySelector('.editor').classList.add('align_justify');
     }
     else if("Right" === this.state.alignment) {
-      document.querySelector('.editor-wrapper').classList.remove('align_center');
-      document.querySelector('.editor-wrapper').classList.remove('align_justify');
-      document.querySelector('.editor-wrapper').classList.remove('align_left');
-      document.querySelector('.editor-wrapper').classList.add('align_right');
+      document.querySelector('.editor').classList.remove('align_center');
+      document.querySelector('.editor').classList.remove('align_justify');
+      document.querySelector('.editor').classList.remove('align_left');
+      document.querySelector('.editor').classList.add('align_right');
     }
     localStorage.setItem('notiful:alignment', this.state.alignment);
   }
@@ -298,10 +298,10 @@ class MyEditor extends React.Component {
     this.setState({ sidebarOpen: open });
 
     if(open) {
-      document.querySelector('.editor-wrapper').classList.add('pl-25');
+      document.querySelector('.editor').classList.add('pl-25');
     }
     else {
-      document.querySelector('.editor-wrapper').classList.remove('pl-25');
+      document.querySelector('.editor').classList.remove('pl-25');
     }
   }
 
@@ -314,28 +314,28 @@ class MyEditor extends React.Component {
     this.setState({ fontFamily: _fontFamily.name });
 
     if("Maison Mono" === _fontFamily.name) {
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto');
-      document.querySelector('.editor-wrapper').classList.remove('ff-interui');
-      document.querySelector('.editor-wrapper').classList.add('ff-maison-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto');
+      document.querySelector('.editor').classList.remove('ff-interui');
+      document.querySelector('.editor').classList.add('ff-maison-mono');
     }
     else if("Roboto Mono" === _fontFamily.name) {
-      document.querySelector('.editor-wrapper').classList.remove('ff-maison-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto');
-      document.querySelector('.editor-wrapper').classList.remove('ff-interui');
-      document.querySelector('.editor-wrapper').classList.add('ff-roboto-mono');
+      document.querySelector('.editor').classList.remove('ff-maison-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto');
+      document.querySelector('.editor').classList.remove('ff-interui');
+      document.querySelector('.editor').classList.add('ff-roboto-mono');
     }
     else if("Roboto" === _fontFamily.name) {
-      document.querySelector('.editor-wrapper').classList.remove('ff-maison-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-interui');
-      document.querySelector('.editor-wrapper').classList.add('ff-roboto');
+      document.querySelector('.editor').classList.remove('ff-maison-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto-mono');
+      document.querySelector('.editor').classList.remove('ff-interui');
+      document.querySelector('.editor').classList.add('ff-roboto');
     }
     else if("Inter UI" === _fontFamily.name) {
-      document.querySelector('.editor-wrapper').classList.remove('ff-maison-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto-mono');
-      document.querySelector('.editor-wrapper').classList.remove('ff-roboto');
-      document.querySelector('.editor-wrapper').classList.add('ff-interui');
+      document.querySelector('.editor').classList.remove('ff-maison-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto-mono');
+      document.querySelector('.editor').classList.remove('ff-roboto');
+      document.querySelector('.editor').classList.add('ff-interui');
     }
 
     localStorage.setItem('notiful:font-family', _fontFamily.name);
@@ -346,19 +346,19 @@ class MyEditor extends React.Component {
     this.setState({ fontSize: _fontSize.name });
 
     if("Small" === _fontSize.name) {
-      document.querySelector('.editor-wrapper').classList.remove('font-size_regular');
-      document.querySelector('.editor-wrapper').classList.remove('font-size_large');
-      document.querySelector('.editor-wrapper').classList.add('font-size_small');
+      document.querySelector('.editor').classList.remove('font-size_regular');
+      document.querySelector('.editor').classList.remove('font-size_large');
+      document.querySelector('.editor').classList.add('font-size_small');
     }
     else if("Regular" === _fontSize.name) {
-      document.querySelector('.editor-wrapper').classList.remove('font-size_small');
-      document.querySelector('.editor-wrapper').classList.remove('font-size_large');
-      document.querySelector('.editor-wrapper').classList.add('font-size_regular');
+      document.querySelector('.editor').classList.remove('font-size_small');
+      document.querySelector('.editor').classList.remove('font-size_large');
+      document.querySelector('.editor').classList.add('font-size_regular');
     }
     else if("Large" === _fontSize.name) {
-      document.querySelector('.editor-wrapper').classList.remove('font-size_small');
-      document.querySelector('.editor-wrapper').classList.remove('font-size_regular');
-      document.querySelector('.editor-wrapper').classList.add('font-size_large');
+      document.querySelector('.editor').classList.remove('font-size_small');
+      document.querySelector('.editor').classList.remove('font-size_regular');
+      document.querySelector('.editor').classList.add('font-size_large');
     }
 
     localStorage.setItem('notiful:font-size', _fontSize.name);
@@ -369,28 +369,28 @@ class MyEditor extends React.Component {
     this.setState({ theme: _theme.name });
 
     if("Light" === _theme.name) {
-      document.querySelector('.editor-wrapper').classList.remove('dark-theme');
-      document.querySelector('.editor-wrapper').classList.remove('slack-theme');
-      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
-      document.querySelector('.editor-wrapper').classList.add('light-theme');
+      document.querySelector('.editor').classList.remove('dark-theme');
+      document.querySelector('.editor').classList.remove('slack-theme');
+      document.querySelector('.editor').classList.remove('karmacoma-theme');
+      document.querySelector('.editor').classList.add('light-theme');
     }
     else if("Dark" === _theme.name) {
-      document.querySelector('.editor-wrapper').classList.remove('light-theme');
-      document.querySelector('.editor-wrapper').classList.remove('slack-theme');
-      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
-      document.querySelector('.editor-wrapper').classList.add('dark-theme');
+      document.querySelector('.editor').classList.remove('light-theme');
+      document.querySelector('.editor').classList.remove('slack-theme');
+      document.querySelector('.editor').classList.remove('karmacoma-theme');
+      document.querySelector('.editor').classList.add('dark-theme');
     }
     else if("Slack" === _theme.name) {
-      document.querySelector('.editor-wrapper').classList.remove('light-theme');
-      document.querySelector('.editor-wrapper').classList.remove('dark-theme');
-      document.querySelector('.editor-wrapper').classList.remove('karmacoma-theme');
-      document.querySelector('.editor-wrapper').classList.add('slack-theme');
+      document.querySelector('.editor').classList.remove('light-theme');
+      document.querySelector('.editor').classList.remove('dark-theme');
+      document.querySelector('.editor').classList.remove('karmacoma-theme');
+      document.querySelector('.editor').classList.add('slack-theme');
     }
     else if("Karmacoma" === _theme.name) {
-      document.querySelector('.editor-wrapper').classList.remove('light-theme');
-      document.querySelector('.editor-wrapper').classList.remove('dark-theme');
-      document.querySelector('.editor-wrapper').classList.remove('slack-theme');
-      document.querySelector('.editor-wrapper').classList.add('karmacoma-theme');
+      document.querySelector('.editor').classList.remove('light-theme');
+      document.querySelector('.editor').classList.remove('dark-theme');
+      document.querySelector('.editor').classList.remove('slack-theme');
+      document.querySelector('.editor').classList.add('karmacoma-theme');
     }
 
     localStorage.setItem('notiful:theme', _theme.name);
@@ -401,28 +401,28 @@ class MyEditor extends React.Component {
     this.setState({ alignment: _alignment.name });
 
     if("Left" === _alignment.name) {
-      document.querySelector('.editor-wrapper').classList.remove('align_center');
-      document.querySelector('.editor-wrapper').classList.remove('align_justify');
-      document.querySelector('.editor-wrapper').classList.remove('align_right');
-      document.querySelector('.editor-wrapper').classList.add('align_left');
+      document.querySelector('.editor').classList.remove('align_center');
+      document.querySelector('.editor').classList.remove('align_justify');
+      document.querySelector('.editor').classList.remove('align_right');
+      document.querySelector('.editor').classList.add('align_left');
     }
     else if("Center" === _alignment.name) {
-      document.querySelector('.editor-wrapper').classList.remove('align_left');
-      document.querySelector('.editor-wrapper').classList.remove('align_justify');
-      document.querySelector('.editor-wrapper').classList.remove('align_right');
-      document.querySelector('.editor-wrapper').classList.add('align_center');
+      document.querySelector('.editor').classList.remove('align_left');
+      document.querySelector('.editor').classList.remove('align_justify');
+      document.querySelector('.editor').classList.remove('align_right');
+      document.querySelector('.editor').classList.add('align_center');
     }
     else if("Justify" === _alignment.name) {
-      document.querySelector('.editor-wrapper').classList.remove('align_left');
-      document.querySelector('.editor-wrapper').classList.remove('align_center');
-      document.querySelector('.editor-wrapper').classList.remove('align_right');
-      document.querySelector('.editor-wrapper').classList.add('align_justify');
+      document.querySelector('.editor').classList.remove('align_left');
+      document.querySelector('.editor').classList.remove('align_center');
+      document.querySelector('.editor').classList.remove('align_right');
+      document.querySelector('.editor').classList.add('align_justify');
     }
     else if("Right" === _alignment.name) {
-      document.querySelector('.editor-wrapper').classList.remove('align_left');
-      document.querySelector('.editor-wrapper').classList.remove('align_center');
-      document.querySelector('.editor-wrapper').classList.remove('align_justify');
-      document.querySelector('.editor-wrapper').classList.add('align_right');
+      document.querySelector('.editor').classList.remove('align_left');
+      document.querySelector('.editor').classList.remove('align_center');
+      document.querySelector('.editor').classList.remove('align_justify');
+      document.querySelector('.editor').classList.add('align_right');
     }
 
     localStorage.setItem('notiful:alignment', _alignment.name);
@@ -530,7 +530,7 @@ class MyEditor extends React.Component {
           }}>
           <div></div>
         </Sidebar>
-        <div className="editor-wrapper">
+        <div className="editor">
           <div className="sidebar-icon-wrapper">
             <a className="customize-button" onClick={() => this.handleSidebarOpen(true)}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
