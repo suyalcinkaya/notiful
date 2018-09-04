@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Sidebar from "react-sidebar";
 import Editor from 'draft-js-plugins-editor';
-import { EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js';
+import { EditorState, RichUtils, convertFromRaw, convertToRaw, getDefaultKeyBinding, Entity } from 'draft-js';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createCounterPlugin from 'draft-js-counter-plugin';
 import createStrikePlugin from './strikePlugin';
+import insertCheckbox from './checkboxPlugin';
 import 'draft-js-emoji-plugin/lib/plugin.css';
 import './assets/fonts/fonts.css';
 import './index.css';
@@ -40,6 +41,13 @@ const linkifyPlugin = createLinkifyPlugin({
 });
 const counterPlugin = createCounterPlugin();
 const { CharCounter, WordCounter } = counterPlugin;
+
+function customKeyBindingFn(e) {
+  if (e.metaKey && e.shiftKey && e.key === 'c') {
+    return 'insert-checkbox';
+  }
+  return getDefaultKeyBinding(e);
+}
 
 class MyEditor extends React.Component {
   constructor(props) {
@@ -288,8 +296,10 @@ class MyEditor extends React.Component {
   }
 
   handleEditorChange = (editorState) => {
-    this.setState({ editorState });
-
+    if(null !== editorState) {
+      this.setState({ editorState });
+    }
+    
     const contentRaw = convertToRaw(this.state.editorState.getCurrentContent());
     localStorage.setItem('notiful:editor-text', JSON.stringify(contentRaw));
   }
@@ -306,7 +316,18 @@ class MyEditor extends React.Component {
   }
 
   handleKeyCommand(command, editorState) {
-    this.handleEditorChange(RichUtils.handleKeyCommand(editorState, command));
+    
+
+
+    let newEditorState = null;
+    switch (command) {
+      case 'insert-checkbox':
+        newEditorState = insertCheckbox(editorState);
+        break;
+      default:
+        newEditorState = RichUtils.handleKeyCommand(editorState, command);
+    }
+    this.handleEditorChange(newEditorState);
   }
 
   handleFontFamilyChange(event) {
@@ -538,7 +559,8 @@ class MyEditor extends React.Component {
           </div>
           <Editor
             editorState={this.state.editorState} 
-            onChange={this.handleEditorChange} 
+            onChange={this.handleEditorChange}
+            keyBindingFn={customKeyBindingFn}
             handleKeyCommand={this.handleKeyCommand} 
             plugins={this.state.plugins} 
             decorators={ 
@@ -558,6 +580,10 @@ class MyEditor extends React.Component {
                 {
                   strategy: h4Strategy,
                   component: h4Component,
+                },
+                {
+                  strategy: checkboxStrategy,
+                  component: checkboxComponent
                 }
               ]
             }
@@ -595,9 +621,15 @@ function h4Strategy(contentBlock, callback, contentState) {
 	findWithRegex(/^####[^#####].+/g, contentBlock, callback);
 }
 
-/*function checkboxStrategy(contentBlock, callback, contentState) {
-	findWithRegex(/^\[ \].+/g, contentBlock, callback);
-}*/
+function checkboxStrategy(contentBlock, callback, contentState) {
+	contentBlock.findEntityRanges((character) => {
+    const entityKey = character.getEntity();
+    return (
+        entityKey !== null &&
+        Entity.get(entityKey).getType() === 'CHECKBOX'
+    );
+  }, callback);
+}
 
 function findWithRegex(regex, contentBlock, callback) {
     const text = contentBlock.getText();
@@ -640,13 +672,13 @@ const h4Component = (props) => {
   )
 }
 
-/*const checkboxComponent = (props) => {
+const checkboxComponent = (props) => {
 	return (
   	<div>
       <input type="checkbox" />
     	<span>{ props.children }</span>
     </div>
   )
-}*/
+}
 
 ReactDOM.render(<MyEditor />, document.getElementById('app'));
