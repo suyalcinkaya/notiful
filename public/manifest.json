@@ -3,6 +3,7 @@
   "name": "Notiful",
   "short_name": "Notiful",
   "description": "Open a new tab and note your best thoughts.",
+  "browser_action": {},
   "background": {
     "persistent": false,
     "scripts": [ "background.js" ]
@@ -16,6 +17,6 @@
     "48": "logo.png",
     "128": "logo.png"
   },
-  "permissions": [ "storage" ],
+  "permissions": [ "storage", "tabs" ],
   "version": "1.0.0"
 }
