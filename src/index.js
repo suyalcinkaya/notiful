@@ -38,13 +38,6 @@ const linkifyPlugin = createLinkifyPlugin({
 const counterPlugin = createCounterPlugin();
 const { CharCounter, WordCounter } = counterPlugin;
 
-function customKeyBindingFn(e) {
-  if (e.metaKey && e.shiftKey && e.key === 'c') {
-    return 'insert-checkbox';
-  }
-  return getDefaultKeyBinding(e);
-}
-
 class MyEditor extends React.Component {
   constructor(props) {
     super(props);
@@ -194,7 +187,7 @@ class MyEditor extends React.Component {
     this.handleAlignmentChange = this.handleAlignmentChange.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     if("Small" === this.state.fontSize) {
       document.querySelector('.editor').classList.remove('font-size_regular');
       document.querySelector('.editor').classList.remove('font-size_large');
@@ -303,18 +296,12 @@ class MyEditor extends React.Component {
   handleSidebarOpen(open) {
     this.setState({ sidebarOpen: open });
 
-    if(open) {
-      document.querySelector('.editor').classList.add('pl-25');
-    }
-    else {
-      document.querySelector('.editor').classList.remove('pl-25');
-    }
+    open
+    ? document.querySelector('.editor').classList.add('pl-25')
+    : document.querySelector('.editor').classList.remove('pl-25');
   }
 
   handleKeyCommand(command, editorState) {
-    
-
-
     let newEditorState = null;
     switch (command) {
       case 'insert-checkbox':
@@ -556,7 +543,6 @@ class MyEditor extends React.Component {
           <Editor
             editorState={this.state.editorState} 
             onChange={this.handleEditorChange}
-            keyBindingFn={customKeyBindingFn}
             handleKeyCommand={this.handleKeyCommand} 
             plugins={this.state.plugins} 
             decorators={ 
