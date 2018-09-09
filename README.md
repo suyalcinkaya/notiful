@@ -9,6 +9,8 @@ An open source minimal and clean taking notes extension for Chrome
 
 [![Available on the Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_206x58.png)](https://chrome.google.com/webstore/detail/notiful/nkpoomaonkgbpcgoncdkfbiamnbimene)
 
+<img src="screenshot.png" alt="screenshot" />
+
 ## Contributing
 
 Bug reports, feature requests and pull requests are always welcome.
